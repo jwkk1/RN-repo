@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { StatusBar, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Store } from '@/store/store';
