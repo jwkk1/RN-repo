@@ -33,7 +33,7 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     width: '100%',
     paddingTop: heightPercentage(20),
-    paddingHorizontal: widthPercentage(20),
+    paddingHorizontal: widthPercentage(10),
   },
 });
 

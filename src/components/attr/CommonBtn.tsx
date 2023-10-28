@@ -5,10 +5,10 @@ interface props {
   buttonStyle: 'solid' | 'solidUnabled' | 'outLine' | 'outLineUnabled' | 'outLine2' | 'text';
   text: string;
   handler?: () => void;
-  mr?: boolean;
+  margin?: boolean;
 }
 
-const CommonButtonMedium = ({ buttonStyle, text, handler, mr }: props) => {
+const CommonButtonMedium = ({ buttonStyle, text, handler, margin }: props) => {
   const containerStyle = {
     solid: {
       backgroundColor: colors.signature,
@@ -62,7 +62,7 @@ const CommonButtonMedium = ({ buttonStyle, text, handler, mr }: props) => {
       style={[
         styles.container,
         containerStyle[buttonStyle],
-        mr && { marginRight: heightPercentage(10) },
+        margin && { marginHorizontal: widthPercentage(5) },
       ]}
       onPress={handler}
     >
