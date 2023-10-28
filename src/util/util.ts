@@ -6,6 +6,7 @@ export const getDeviceInfo = () => {
     serviceKey: SERVICE_KEY,
     MobileOS: Platform.OS === 'ios' ? 'IOS' : 'AND',
     MobileApp: 'RN-REPO',
+    _type: 'json',
   };
   return phoneInfo;
 };
