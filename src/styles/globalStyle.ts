@@ -36,3 +36,10 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: widthPercentage(20),
   },
 });
+
+export const colors = {
+  white: '#FFFFFF',
+  measurementBackground: '#FCFCFF',
+  homeBackground: '#FCFCFC',
+  signature: '#ED6922',
+};
