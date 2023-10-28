@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     paddingVertical: heightPercentage(8),
     justifyContent: 'space-between',
     flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
   },
 });
 

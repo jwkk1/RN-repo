@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-
-import { Text, View } from 'react-native';
+import Home from '@/pages/Home/Home';
 
 const HomeNavigator = () => {
   const Stack = createStackNavigator();
@@ -13,14 +12,6 @@ const HomeNavigator = () => {
     >
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
     </Stack.Navigator>
-  );
-};
-
-const Home = () => {
-  return (
-    <View>
-      <Text>asasdd</Text>
-    </View>
   );
 };
 
