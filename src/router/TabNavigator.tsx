@@ -10,7 +10,7 @@ import MagazineUnactive from '@assets/tabBar/Property 1=tab_5, Property 2=unacti
 import ShoppingActive from '@assets/tabBar/Property 1=tab_4, Property 2=active.svg';
 import ShoppingunActive from '@assets/tabBar/Property 1=tab_4, Property 2=unactive.svg';
 import HomeNavigator from './HomeNavigator';
-import { heightPercentage, widthPercentage } from '@/styles/globalStyle';
+import { colors, fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,15 +28,46 @@ const TabNavigator = ({ navigation }: { navigation: any }) => {
                 navigation.navigate('HomeNavigator');
               }}
             >
-              {activeTab === 'HomeNavigator' ? <HomeActive /> : <HomeUnactive />}
+              {activeTab === 'HomeNavigator' ? (
+                <View style={styles.btn}>
+                  <HomeActive />
+                  <Text
+                    style={[
+                      styles.text_btn,
+                      activeTab === 'HomeNavigator' && { color: colors.signature },
+                    ]}
+                  >
+                    홈
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.btn}>
+                  <HomeUnactive />
+                  <Text style={styles.text_btn}>홈</Text>
+                </View>
+              )}
             </Pressable>
             <Pressable
               onPress={() => {
-                setActiveTab('Navigator2');
-                navigation.navigate('Navigator2');
+                setActiveTab('My');
+                navigation.navigate('My');
               }}
             >
-              {activeTab === 'Navigator2' ? <RecodeActive /> : <RecodeUnactive />}
+              {activeTab === 'My' ? (
+                <View style={styles.btn}>
+                  <RecodeActive />
+                  <Text
+                    style={[styles.text_btn, activeTab === 'My' && { color: colors.signature }]}
+                  >
+                    MY
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.btn}>
+                  <RecodeUnactive />
+                  <Text style={styles.text_btn}>MY</Text>
+                </View>
+              )}
             </Pressable>
             <Pressable
               onPress={() => {
@@ -44,15 +75,46 @@ const TabNavigator = ({ navigation }: { navigation: any }) => {
                 navigation.navigate('Shopping');
               }}
             >
-              {activeTab === 'Shopping' ? <ShoppingActive /> : <ShoppingunActive />}
+              {activeTab === 'Shopping' ? (
+                <View style={styles.btn}>
+                  <ShoppingActive />
+                  <Text
+                    style={[
+                      styles.text_btn,
+                      activeTab === 'Shopping' && { color: colors.signature },
+                    ]}
+                  >
+                    쇼핑
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.btn}>
+                  <ShoppingunActive />
+                  <Text style={styles.text_btn}>쇼핑</Text>
+                </View>
+              )}
             </Pressable>
             <Pressable
               onPress={() => {
-                setActiveTab('Magazine');
-                navigation.navigate('Magazine');
+                setActiveTab('Map');
+                navigation.navigate('Map');
               }}
             >
-              {activeTab === 'Magazine' ? <MagazineActive /> : <MagazineUnactive />}
+              {activeTab === 'Map' ? (
+                <View style={styles.btn}>
+                  <MagazineActive />
+                  <Text
+                    style={[styles.text_btn, activeTab === 'Map' && { color: colors.signature }]}
+                  >
+                    지도
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.btn}>
+                  <MagazineUnactive />
+                  <Text style={styles.text_btn}>지도</Text>
+                </View>
+              )}
             </Pressable>
           </View>
         );
@@ -68,8 +130,8 @@ const TabNavigator = ({ navigation }: { navigation: any }) => {
         }}
       />
       <Tab.Screen
-        name="Navigator2"
-        component={Navigator2}
+        name="My"
+        component={My}
         initialParams={{}}
         options={{
           title: '홈',
@@ -89,9 +151,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
   },
+  btn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text_btn: {
+    fontSize: fontPercentage(12),
+    fontWeight: '600',
+  },
 });
 
-const Navigator2 = () => {
+const My = () => {
   return (
     <View>
       <Text>2</Text>
