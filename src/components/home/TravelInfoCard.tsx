@@ -1,29 +1,31 @@
 import { fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
+import { searchKeywordListResponse } from '@/types/response';
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-const TravelInfoCard = () => {
-  return (
-    <Pressable style={styles.card}>
-      <Image
-        style={styles.img}
-        resizeMode="cover"
-        source={{ uri: 'https://tong.visitkorea.or.kr/cms/resource/85/2031885_image2_1.jpg' }}
-      />
-      <Text style={styles.text_title} numberOfLines={1} ellipsizeMode="tail">
-        asdasdasdasdasdasdasdasd
-      </Text>
-    </Pressable>
-  );
+interface props {
+  itemDetail: searchKeywordListResponse;
+}
+
+const TravelInfoCard = ({ itemDetail }: props) => {
+  if (itemDetail.firstimage)
+    return (
+      <Pressable style={styles.card}>
+        <Image style={styles.img} resizeMode="cover" source={{ uri: itemDetail.firstimage }} />
+        <Text style={styles.text_title} numberOfLines={1} ellipsizeMode="tail">
+          {itemDetail.title}
+        </Text>
+      </Pressable>
+    );
 };
 
 const styles = StyleSheet.create({
   card: {
-    marginRight: widthPercentage(20),
+    marginHorizontal: widthPercentage(7),
   },
   img: {
-    width: 200,
-    height: 140,
+    width: widthPercentage(200),
+    height: heightPercentage(140),
     borderRadius: 20,
     marginBottom: heightPercentage(10),
     overflow: 'hidden',
