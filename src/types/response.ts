@@ -20,3 +20,17 @@ export interface searchKeywordListResponse {
   tel: string;
   title: string;
 }
+
+export interface petTourListResponse {
+  contentid: string;
+  petTursmInfo: string;
+  relaAcdntRiskMtr: string;
+  acmpyTypeCd: string;
+  relaPosesFclty: string;
+  relaFrnshPrdlst: string;
+  etcAcmpyInfo: string;
+  relaPurcPrdlst: string;
+  acmpyPsblCpam: string;
+  relaRntlPrdlst: string;
+  acmpyNeedMtr: string;
+}
