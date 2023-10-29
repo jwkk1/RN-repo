@@ -11,6 +11,7 @@ import ShoppingActive from '@assets/tabBar/Property 1=tab_4, Property 2=active.s
 import ShoppingunActive from '@assets/tabBar/Property 1=tab_4, Property 2=unactive.svg';
 import HomeNavigator from './HomeNavigator';
 import { colors, fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
+import Map from '@/pages/Map/Map';
 
 const Tab = createBottomTabNavigator();
 
@@ -132,6 +133,15 @@ const TabNavigator = ({ navigation }: { navigation: any }) => {
       <Tab.Screen
         name="My"
         component={My}
+        initialParams={{}}
+        options={{
+          title: '홈',
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Map"
+        component={Map}
         initialParams={{}}
         options={{
           title: '홈',
