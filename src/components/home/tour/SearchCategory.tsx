@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import CommonButtonMedium from '@components/attr/CommonBtn';
 import { regionCode } from '../../../constants/data';
 import { fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
 import TravelInfoCard from './TravelInfoCard';
-import { useGetAreaBased, useGetSearchKeyword } from '@/pages/Home/_queries';
+import { useGetAreaBased } from '@/pages/Home/_queries';
 import { searchKeywordListResponse } from '@/types/response';
+import { HomeNavigatorProps } from '@/types/navigation';
 
-const SearchCategory = () => {
+type props = HomeNavigatorProps;
+
+const SearchCategory = ({ navigation }: props) => {
   const [selectedLocation, setSelectedLocation] = useState<string | undefined>(undefined);
   const { areaBasedList, isLoading } = useGetAreaBased(selectedLocation);
 
@@ -35,9 +38,12 @@ const SearchCategory = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.content}>
         {areaBasedList?.map((item: searchKeywordListResponse) => {
           return (
-            <View key={item.contentid}>
+            <Pressable
+              key={item.contentid}
+              onPress={() => navigation.navigate('TourDetail', { contentid: item.contentid })}
+            >
               <TravelInfoCard itemDetail={item} />
-            </View>
+            </Pressable>
           );
         })}
       </ScrollView>

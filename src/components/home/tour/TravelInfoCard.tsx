@@ -1,21 +1,24 @@
 import { fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
 import { searchKeywordListResponse } from '@/types/response';
-import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 interface props {
   itemDetail: searchKeywordListResponse;
 }
 
 const TravelInfoCard = ({ itemDetail }: props) => {
+  useEffect(() => {
+    console.log(itemDetail.contentid);
+  }, [itemDetail]);
   if (itemDetail.firstimage)
     return (
-      <Pressable style={styles.card}>
+      <View style={styles.card}>
         <Image style={styles.img} resizeMode="cover" source={{ uri: itemDetail.firstimage }} />
         <Text style={styles.text_title} numberOfLines={1} ellipsizeMode="tail">
           {itemDetail.title}
         </Text>
-      </Pressable>
+      </View>
     );
 };
 
