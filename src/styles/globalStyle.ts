@@ -41,5 +41,5 @@ export const colors = {
   white: '#FFFFFF',
   measurementBackground: '#FCFCFF',
   homeBackground: '#FCFCFC',
-  signature: '#ED6922',
+  signature: '#26a69a',
 };
