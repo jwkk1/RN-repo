@@ -1,4 +1,5 @@
 import {
+  requestAreaBasedList,
   requestDetailCommon,
   requestDetailPetTour,
   requestLocationBasedList,
@@ -7,6 +8,13 @@ import {
 import { getDeviceInfo } from '@/util/util';
 import Toast from 'react-native-toast-message';
 import { useQuery } from 'react-query';
+
+const errorMsg = () => {
+  Toast.show({
+    type: 'customToast',
+    text1: '인터넷 연결을 확인해 주세요.',
+  });
+};
 
 export const useGetSearchKeyword = (keyword: string) => {
   const deviceInfo = getDeviceInfo();
@@ -32,15 +40,45 @@ export const useGetSearchKeyword = (keyword: string) => {
         }
       },
       onError: async () => {
-        Toast.show({
-          type: 'customToast',
-          text1: '인터넷 연결을 확인해 주세요.',
-        });
+        errorMsg();
       },
     },
   );
 
   return { searchKeywordList: data?.data.response.body.items.item, isLoading, refetch };
+};
+
+export const useGetAreaBased = (areaCode: string | undefined) => {
+  const deviceInfo = getDeviceInfo();
+  const params = {
+    serviceKey: deviceInfo.serviceKey,
+    MobileOS: deviceInfo.MobileOS,
+    MobileApp: deviceInfo.MobileApp,
+    areaCode: areaCode && areaCode,
+    _type: deviceInfo._type,
+    numOfRows: 5,
+    arrange: 'R',
+  };
+  console.log(params);
+  const { data, isLoading, refetch } = useQuery(
+    ['areaBasedList', areaCode],
+    () => requestAreaBasedList(params),
+    {
+      onSuccess: async ({ data }) => {
+        if (data.response.header.resultCode !== '0000') {
+          Toast.show({
+            type: 'customToast',
+            text1: data.response.resultMsg,
+          });
+        }
+      },
+      onError: async () => {
+        errorMsg();
+      },
+    },
+  );
+
+  return { areaBasedList: data?.data.response.body.items.item, isLoading, refetch };
 };
 
 export const useGetPetTour = () => {
@@ -65,10 +103,7 @@ export const useGetPetTour = () => {
         }
       },
       onError: async () => {
-        Toast.show({
-          type: 'customToast',
-          text1: '인터넷 연결을 확인해 주세요.',
-        });
+        errorMsg();
       },
     },
   );
@@ -100,10 +135,7 @@ export const useGetCommon = (contentId: string) => {
         }
       },
       onError: async () => {
-        Toast.show({
-          type: 'customToast',
-          text1: '인터넷 연결을 확인해 주세요.',
-        });
+        errorMsg();
       },
     },
   );
@@ -135,10 +167,7 @@ export const useGetLocation = (mapX: string, mapY: string) => {
         }
       },
       onError: async () => {
-        Toast.show({
-          type: 'customToast',
-          text1: '인터넷 연결을 확인해 주세요.',
-        });
+        errorMsg();
       },
     },
   );
