@@ -59,7 +59,6 @@ export const useGetAreaBased = (areaCode: string | undefined) => {
     numOfRows: 5,
     arrange: 'R',
   };
-  console.log(params);
   const { data, isLoading, refetch } = useQuery(
     ['areaBasedList', areaCode],
     () => requestAreaBasedList(params),
