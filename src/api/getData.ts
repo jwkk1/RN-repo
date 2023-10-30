@@ -1,4 +1,5 @@
 import {
+  areaBasedRequest,
   detailCommonRequest,
   detailPetTourRequest,
   locationBasedRequest,
@@ -23,5 +24,10 @@ export const requestDetailCommon = async (params: detailCommonRequest) => {
 
 export const requestLocationBasedList = async (params: locationBasedRequest) => {
   const result = await instance.get('/locationBasedList1', { params });
+  return result;
+};
+
+export const requestAreaBasedList = async (params: areaBasedRequest) => {
+  const result = await instance.get('/areaBasedList1', { params });
   return result;
 };
