@@ -27,3 +27,8 @@ export interface locationBasedRequest extends commonRequestparam {
   mapY: string;
   radius: string;
 }
+
+export interface areaBasedRequest extends commonRequestparam {
+  arrange?: string;
+  areaCode?: string;
+}
