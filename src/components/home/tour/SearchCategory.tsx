@@ -10,7 +10,7 @@ import { HomeNavigatorProps } from '@/types/navigation';
 
 type props = HomeNavigatorProps;
 
-const SearchCategory = ({ navigation }: props) => {
+const SearchCategory = ({ navigation, route }: props) => {
   const [selectedLocation, setSelectedLocation] = useState<string | undefined>(undefined);
   const { areaBasedList, isLoading } = useGetAreaBased(selectedLocation);
 
@@ -40,7 +40,7 @@ const SearchCategory = ({ navigation }: props) => {
           return (
             <Pressable
               key={item.contentid}
-              onPress={() => navigation.navigate('TourDetail', { contentid: item.contentid })}
+              onPress={() => navigation.navigate('TourDetail', { tourDetail: item })}
             >
               <TravelInfoCard itemDetail={item} />
             </Pressable>
