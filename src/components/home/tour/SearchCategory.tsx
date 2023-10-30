@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import CommonButtonMedium from '@components/attr/CommonBtn';
-import { regionCode } from '../../constants/data';
+import { regionCode } from '../../../constants/data';
 import { fontPercentage, heightPercentage, widthPercentage } from '@/styles/globalStyle';
 import TravelInfoCard from './TravelInfoCard';
-import { useGetSearchKeyword } from '@/pages/Home/_queries';
+import { useGetAreaBased, useGetSearchKeyword } from '@/pages/Home/_queries';
 import { searchKeywordListResponse } from '@/types/response';
 
 const SearchCategory = () => {
-  const [selectedLocation, setSelectedLocation] = useState<string>('전국');
-  const { searchKeywordList, isLoading } = useGetSearchKeyword(selectedLocation);
+  const [selectedLocation, setSelectedLocation] = useState<string | undefined>(undefined);
+  const { areaBasedList, isLoading } = useGetAreaBased(selectedLocation);
 
   return (
     <View style={styles.container}>
@@ -24,16 +24,16 @@ const SearchCategory = () => {
             <View key={i}>
               <CommonButtonMedium
                 text={item.id}
-                buttonStyle={selectedLocation === item.id ? 'solid' : 'outLine'}
+                buttonStyle={selectedLocation === item.code ? 'solid' : 'outLine'}
                 margin
-                handler={() => setSelectedLocation(item.id)}
+                handler={() => setSelectedLocation(item.code)}
               />
             </View>
           );
         })}
       </ScrollView>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.content}>
-        {searchKeywordList?.map((item: searchKeywordListResponse) => {
+        {areaBasedList?.map((item: searchKeywordListResponse) => {
           return (
             <View key={item.contentid}>
               <TravelInfoCard itemDetail={item} />

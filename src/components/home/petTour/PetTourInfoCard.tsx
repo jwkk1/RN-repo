@@ -11,9 +11,9 @@ interface props {
 const PetTourInfoCard = ({ itemDetail }: props) => {
   const { commonDetail, isLoading } = useGetCommon(itemDetail.contentid);
 
-  useEffect(() => {
-    console.log(commonDetail);
-  }, [commonDetail]);
+  // useEffect(() => {
+  //   console.log(commonDetail);
+  // }, [commonDetail]);
 
   if (commonDetail?.firstimage)
     return (
