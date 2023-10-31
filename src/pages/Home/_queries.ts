@@ -7,7 +7,7 @@ import {
 } from '@/api/getData';
 import { getDeviceInfo } from '@/util/util';
 import Toast from 'react-native-toast-message';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 
 const errorMsg = () => {
   Toast.show({
@@ -18,35 +18,38 @@ const errorMsg = () => {
 
 export const useGetSearchKeyword = (keyword: string) => {
   const deviceInfo = getDeviceInfo();
-  const params = {
-    serviceKey: deviceInfo.serviceKey,
-    MobileOS: deviceInfo.MobileOS,
-    MobileApp: deviceInfo.MobileApp,
-    keyword: keyword,
-    _type: deviceInfo._type,
-    numOfRows: 5,
-    arrange: 'R',
-  };
-  const { data, isLoading, refetch } = useQuery(
+
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery(
     ['searchKeyword', keyword],
-    () => requestSearchKeyword(params),
+    ({ pageParam = 1 }) => {
+      // console.log(pageParam, 'asdasdasd');
+      const params = {
+        serviceKey: deviceInfo.serviceKey,
+        MobileOS: deviceInfo.MobileOS,
+        MobileApp: deviceInfo.MobileApp,
+        keyword: '11',
+        _type: deviceInfo._type,
+        numOfRows: 10,
+        arrange: 'R',
+        pageNo: pageParam,
+      };
+      return requestSearchKeyword(params);
+    },
     {
+      getNextPageParam: (lastPage) => {
+        return lastPage.data.response.body.totalCount > lastPage.data.response.body.pageNo * 10
+          ? lastPage.data.response.body.pageNo + 1
+          : undefined;
+      },
       enabled: !!keyword,
-      onSuccess: async ({ data }) => {
-        if (data.response.header.resultCode !== '0000') {
-          Toast.show({
-            type: 'customToast',
-            text1: data.response.resultMsg,
-          });
-        }
-      },
-      onError: async () => {
-        errorMsg();
-      },
     },
   );
 
-  return { searchKeywordList: data?.data.response.body.items, isLoading, refetch };
+  return {
+    searchKeywordList: data,
+    fetchNextPage: fetchNextPage,
+    isLoading,
+  };
 };
 
 export const useGetAreaBased = (areaCode: string | undefined) => {
