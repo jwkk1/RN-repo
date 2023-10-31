@@ -182,21 +182,22 @@ export const useGetCommonDetail = (contentId: string) => {
   return { commonDetail: data?.data.response.body.items.item[0], isLoading, refetch };
 };
 
-export const useGetLocation = (mapX: string, mapY: string) => {
+export const useGetLocation = (mapX: number, mapY: number) => {
   const deviceInfo = getDeviceInfo();
   const params = {
     serviceKey: deviceInfo.serviceKey,
     MobileOS: deviceInfo.MobileOS,
     MobileApp: deviceInfo.MobileApp,
     _type: deviceInfo._type,
-    mapX: mapX,
-    mapY: mapY,
-    radius: '30',
+    mapX: mapX ? mapX.toString() : '',
+    mapY: mapY ? mapY.toString() : '',
+    radius: '200000',
   };
   const { data, isLoading, refetch } = useQuery(
     ['location', mapX, mapY],
     () => requestLocationBasedList(params),
     {
+      enabled: !!mapX && !!mapY,
       onSuccess: async ({ data }) => {
         if (data.response.header.resultCode !== '0000') {
           Toast.show({
@@ -211,5 +212,5 @@ export const useGetLocation = (mapX: string, mapY: string) => {
     },
   );
 
-  return { locationList: data?.data.response.body.items.item[0], isLoading, refetch };
+  return { locationList: data, isLoading, refetch };
 };

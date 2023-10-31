@@ -34,3 +34,27 @@ export interface petTourListResponse {
   relaRntlPrdlst: string;
   acmpyNeedMtr: string;
 }
+
+export interface locationSearchResponse {
+  contentid: 'string';
+  addr2: 'string';
+  firstimage2: 'string';
+  cpyrhtDivCd: 'string';
+  addr1: 'string';
+  contenttypeid: 'string';
+  createdtime: 'string';
+  dist: 'string';
+  firstimage: 'string';
+  areacode: 'string';
+  booktour: 'string';
+  mapx: 'string';
+  mapy: 'string';
+  mlevel: 'string';
+  modifiedtime: 'string';
+  sigungucode: 'string';
+  tel: 'string';
+  title: 'string';
+  cat1: 'string';
+  cat2: 'string';
+  cat3: 'string';
+}
