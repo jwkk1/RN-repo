@@ -12,6 +12,7 @@ import {
 } from '@/styles/globalStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { searchKeywordListResponse } from '@/types/response';
+import TourMapMarker from '@/components/home/tour/TourMapMarker';
 
 type props = TourDetailNavigatorProps;
 
@@ -62,19 +63,27 @@ const TourDetail = ({ navigation, route }: props) => {
     getStorageFavoriteList();
   }, [commonDetail]);
 
-  return (
-    <SafeAreaView style={globalStyles.screen}>
-      <ScrollView style={styles.scrollView} stickyHeaderIndices={[0]}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.text_headerAddr}>addr1</Text>
-          <Text style={styles.text_headerTitle}>title</Text>
-        </View>
-        <View style={styles.imgContainer}>
-          <Text>img</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  if (commonDetail)
+    return (
+      <SafeAreaView style={globalStyles.screen}>
+        <ScrollView style={styles.scrollView} stickyHeaderIndices={[0]}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.text_headerAddr}>addr1</Text>
+            <Text style={styles.text_headerTitle}>title</Text>
+          </View>
+          <View style={styles.imgContainer}>
+            <Text>img</Text>
+          </View>
+          <View style={styles.mapContainer}>
+            <TourMapMarker
+              latitude={commonDetail.mapy}
+              longitude={commonDetail.mapx}
+              title={commonDetail.title}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -91,6 +100,14 @@ const styles = StyleSheet.create({
     marginBottom: heightPercentage(8),
   },
   imgContainer: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: heightPercentage(8),
+    paddingVertical: heightPercentage(20),
+    paddingHorizontal: widthPercentage(20),
+  },
+  mapContainer: {
+    paddingVertical: heightPercentage(20),
+    paddingHorizontal: widthPercentage(20),
     backgroundColor: '#FFFFFF',
   },
   text_headerTitle: {
