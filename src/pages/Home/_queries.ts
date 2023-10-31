@@ -31,6 +31,7 @@ export const useGetSearchKeyword = (keyword: string) => {
     ['searchKeyword', keyword],
     () => requestSearchKeyword(params),
     {
+      enabled: !!keyword,
       onSuccess: async ({ data }) => {
         if (data.response.header.resultCode !== '0000') {
           Toast.show({
@@ -45,7 +46,7 @@ export const useGetSearchKeyword = (keyword: string) => {
     },
   );
 
-  return { searchKeywordList: data?.data.response.body.items.item, isLoading, refetch };
+  return { searchKeywordList: data?.data.response.body.items, isLoading, refetch };
 };
 
 export const useGetAreaBased = (areaCode: string | undefined) => {
