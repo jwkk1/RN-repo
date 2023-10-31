@@ -122,6 +122,42 @@ export const useGetCommon = (contentId: string) => {
     firstImageYN: 'Y',
   };
   const { data, isLoading, refetch } = useQuery(
+    ['commonPetDetail', contentId],
+    () => requestDetailCommon(params),
+    {
+      onSuccess: async ({ data }) => {
+        if (data.response.header.resultCode !== '0000') {
+          Toast.show({
+            type: 'customToast',
+            text1: data.response.resultMsg,
+          });
+        }
+      },
+      onError: async () => {
+        errorMsg();
+      },
+    },
+  );
+
+  return { commonDetail: data?.data.response.body.items.item[0], isLoading, refetch };
+};
+
+export const useGetCommonDetail = (contentId: string) => {
+  const deviceInfo = getDeviceInfo();
+  const params = {
+    serviceKey: deviceInfo.serviceKey,
+    MobileOS: deviceInfo.MobileOS,
+    MobileApp: deviceInfo.MobileApp,
+    _type: deviceInfo._type,
+    contentId: contentId,
+    defaultYN: 'Y',
+    firstImageYN: 'Y',
+    areacodeYN: 'Y',
+    addrinfoYN: 'Y',
+    overviewYN: 'Y',
+    mapinfoYN: 'Y',
+  };
+  const { data, isLoading, refetch } = useQuery(
     ['commonDetail', contentId],
     () => requestDetailCommon(params),
     {
