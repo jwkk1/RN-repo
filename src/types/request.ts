@@ -10,6 +10,7 @@ export interface searchKeywordRequest extends commonRequestparam {
   arrange?: string;
   areaCode?: string;
   numOfRows?: number;
+  pageNo?: number;
 }
 
 export interface detailPetTourRequest extends commonRequestparam {
