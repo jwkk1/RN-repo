@@ -1,4 +1,4 @@
-import { heightPercentage } from '@/styles/globalStyle';
+import { colors, fontPercentage, heightPercentage } from '@/styles/globalStyle';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -12,6 +12,7 @@ interface props {
 const TourMapMarker = ({ latitude, longitude, title }: props) => {
   return (
     <View>
+      <Text style={styles.text_title}>상세 위치</Text>
       <MapView
         style={styles.mapView}
         provider={PROVIDER_GOOGLE}
@@ -36,6 +37,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: heightPercentage(300),
     borderRadius: 20,
+  },
+  text_title: {
+    fontSize: fontPercentage(18),
+    letterSpacing: -0.5,
+    lineHeight: 24,
+    fontWeight: '800',
+    marginBottom: heightPercentage(10),
   },
 });
 
