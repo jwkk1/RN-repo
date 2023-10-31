@@ -120,10 +120,6 @@ export const useGetCommon = (contentId: string) => {
     contentId: contentId,
     defaultYN: 'Y',
     firstImageYN: 'Y',
-    mapinfoYN: 'Y',
-    overviewYN: 'Y',
-    addrinfoYN: 'Y',
-    areacodeYN: 'Y',
   };
   const { data, isLoading, refetch } = useQuery(
     ['commonDetail', contentId],
