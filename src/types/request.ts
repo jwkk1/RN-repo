@@ -20,6 +20,10 @@ export interface detailCommonRequest extends commonRequestparam {
   contentId: string;
   defaultYN?: string;
   firstImageYN?: string;
+  mapinfoYN?: string;
+  overviewYN?: string;
+  addrinfoYN?: string;
+  areacodeYN?: string;
 }
 
 export interface locationBasedRequest extends commonRequestparam {
