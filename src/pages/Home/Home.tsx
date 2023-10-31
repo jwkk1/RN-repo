@@ -28,7 +28,7 @@ const Home = ({ navigation, route }: props) => {
     <SafeAreaView style={globalStyles.screen}>
       <ScrollView style={globalStyles.mainContainer} showsVerticalScrollIndicator={false}>
         <SearchCategory navigation={navigation} route={route} />
-        <PetTourArea />
+        {/* <PetTourArea /> */}
       </ScrollView>
     </SafeAreaView>
   );
