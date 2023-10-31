@@ -22,6 +22,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>서비스 이용을 위해 위치 정보 접근 권한이 필요합니다.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>서비스 이용을 위해 위치 정보 접근 권한이 필요합니다.</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>c95c7061be6ca6c02e9e76c5e87bfc51</string>
 	<key>LSRequiresIPhoneOS</key>
